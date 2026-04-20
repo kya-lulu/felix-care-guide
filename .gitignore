@@ -5,6 +5,3 @@ dist/
 .env
 .env.local
 vite.config.ts.timestamp-*.mjs
-
-# Local dev journal — not shipped publicly
-SESSION_LOG.md
