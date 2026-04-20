@@ -114,14 +114,23 @@ const TASKS: Task[] = [
     days: ['tue', 'thu', 'sat'],
     learnMore: (
       <>
-        <p>House plants live across three rooms:</p>
-        <ul className="list-disc list-inside space-y-0.5 pl-1">
-          <li><strong>Office</strong></li>
-          <li><strong>Guest bedroom</strong></li>
-          <li><strong>Living room</strong></li>
+        <p>House plants live across several rooms — they're scattered, so sweep through each:</p>
+        <ul className="list-disc list-inside space-y-1 pl-1">
+          <li>
+            <strong>Living room / dining area:</strong> plants on the window sill, plants in front of the big windows, the small <em>orchid</em> and <em>lucky bamboo</em> on the fireplace mantle, and a plant on the dining room table.
+          </li>
+          <li>
+            <strong>Office:</strong> just the plants on the window sill.
+          </li>
+          <li>
+            <strong>Guest bedroom:</strong> just the plants near the window.
+          </li>
         </ul>
         <p>
           Most house plants prefer to dry out slightly between waterings. Stick a finger about an inch into the soil — if it's dry, water until you see a little drainage; if it's still moist, skip that plant.
+        </p>
+        <p className="text-xs text-text-muted">
+          <strong>Orchid + lucky bamboo special cases:</strong> the orchid wants a small pour of water into the bark and that's it — don't flood it. The lucky bamboo lives in water only; just top its vase off to the original line.
         </p>
         <p className="text-xs text-text-muted">
           When in doubt, underwater rather than overwater. Yellowing leaves usually mean too much water, not too little.
@@ -149,7 +158,7 @@ const TASKS: Task[] = [
     subtext: 'Oval bed (salvia, bergamot, etc.) + potted plants by the entry.',
     reminder: 'Hit the salvia and bergamot — they wilt fastest in heat.',
     days: ['tue', 'thu', 'sat'],
-    deepLink: { url: 'https://tamlinfarm.org', label: 'See front-yard plant list' },
+    deepLink: { url: 'https://tamlinfarm.org/#front-yard', label: 'See front-yard plants on tamlinfarm.org' },
     learnMore: (
       <>
         <p>Front yard watering covers:</p>
