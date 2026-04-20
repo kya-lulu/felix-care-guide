@@ -65,6 +65,18 @@ const TASKS: Task[] = [
     ),
   },
   {
+    id: 'm_blinds',
+    section: 'morning',
+    label: 'Open guest bedroom blinds',
+    subtext: 'So the plants get sunlight all day.',
+    learnMore: (
+      <>
+        <p>The guest bedroom has several light-loving house plants. Open the blinds first thing in the morning so they get a full day of light.</p>
+        <p>You can close them before you leave for the evening if you'd like — the morning and midday light is what matters most.</p>
+      </>
+    ),
+  },
+  {
     id: 'm3',
     section: 'morning',
     label: 'Water the outdoor garden',
@@ -94,6 +106,63 @@ const TASKS: Task[] = [
     ),
   },
   {
+    id: 'm_houseplants',
+    section: 'morning',
+    label: 'Water house plants',
+    subtext: 'Office, guest bedroom, living room.',
+    reminder: 'Check soil moisture FIRST — only water if the top inch is dry.',
+    days: ['tue', 'thu', 'sat'],
+    learnMore: (
+      <>
+        <p>House plants live across three rooms:</p>
+        <ul className="list-disc list-inside space-y-0.5 pl-1">
+          <li><strong>Office</strong></li>
+          <li><strong>Guest bedroom</strong></li>
+          <li><strong>Living room</strong></li>
+        </ul>
+        <p>
+          Most house plants prefer to dry out slightly between waterings. Stick a finger about an inch into the soil — if it's dry, water until you see a little drainage; if it's still moist, skip that plant.
+        </p>
+        <p className="text-xs text-text-muted">
+          When in doubt, underwater rather than overwater. Yellowing leaves usually mean too much water, not too little.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 'm_deck',
+    section: 'morning',
+    label: 'Water deck plants',
+    subtext: 'Potted plants out on the deck.',
+    days: ['tue', 'thu', 'sat'],
+    learnMore: (
+      <>
+        <p>The deck pots dry out faster than ground beds because of wind and direct sun.</p>
+        <p>Water slowly until you see drainage come through the bottom of each pot. Pots without drainage trays may need a slower pour instead of a flush.</p>
+      </>
+    ),
+  },
+  {
+    id: 'm_frontyard',
+    section: 'morning',
+    label: 'Water front yard + oval',
+    subtext: 'Oval bed (salvia, bergamot, etc.) + potted plants by the entry.',
+    reminder: 'Hit the salvia and bergamot — they wilt fastest in heat.',
+    days: ['tue', 'thu', 'sat'],
+    deepLink: { url: 'https://tamlinfarm.org', label: 'See front-yard plant list' },
+    learnMore: (
+      <>
+        <p>Front yard watering covers:</p>
+        <ul className="list-disc list-inside space-y-0.5 pl-1">
+          <li>The <strong>oval garden bed</strong> — salvia, bergamot, and the rest of the perennial mix.</li>
+          <li>All the <strong>potted plants</strong> by the front entry and walkway.</li>
+        </ul>
+        <p>Salvia and bergamot are the most water-sensitive — give them a thorough soak at the base, not over the leaves.</p>
+        <p className="text-xs text-text-muted">Pots dry fastest. Water each pot until drainage shows at the bottom.</p>
+      </>
+    ),
+  },
+  {
     id: 'm4',
     section: 'morning',
     label: 'Send Terry a photo',
@@ -110,13 +179,17 @@ const TASKS: Task[] = [
     section: 'morning',
     label: 'Feed fish tanks',
     subtext: '10g: pinch of flakes. 4g betta: 3–5 Bug Bites. 7g & 9g: skip.',
+    days: ['mon', 'wed', 'fri', 'sun'],
     learnMore: (
       <>
         <p>
-          <strong>10-gallon:</strong> small pinch of crushed flakes, daily.
+          <strong>Fish schedule:</strong> every other day — Mon / Wed / Fri / Sun. Skip Tue, Thu, Sat entirely.
         </p>
         <p>
-          <strong>4-gallon betta:</strong> 3–5 Bug Bites pellets, daily.
+          <strong>10-gallon:</strong> small pinch of crushed flakes.
+        </p>
+        <p>
+          <strong>4-gallon betta:</strong> 3–5 Bug Bites pellets.
         </p>
         <p>
           <strong>7-gallon and 9-gallon:</strong> nothing — don't feed. Terry handles these.
