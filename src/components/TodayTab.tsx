@@ -293,14 +293,14 @@ const TASKS: Task[] = [
     label: 'Small night feed',
     subtext: 'Kya: ½ silver cup. Lulu: ¼ blue cup.',
     reminder:
-      'Kya may skip this — she sometimes pukes if she eats too close to sleeping. Offer it, but don\'t force her.',
+      'Kya MUST eat this. Her stomach gets empty overnight and she throws up bile if she skips it. Sit with her until she finishes.',
     learnMore: (
       <>
         <p>
-          Much smaller portion than the other meals — this is a top-off so they're not hungry overnight.
+          Small top-off meal so neither dog is hungry overnight — but for Kya this is <strong>not optional</strong>.
         </p>
         <p>
-          <strong>Kya:</strong> ½ a silver cup of kibble. If she turns her nose up, that's fine — pick the bowl up after 5 minutes. She'll let you know.
+          <strong>Kya:</strong> ½ silver cup of kibble. If her stomach goes empty through the night, she pukes up yellow bile in the morning. If she seems uninterested, sit next to her bowl and coax her — hand-feed a few pieces if needed.
         </p>
         <p>
           <strong>Lulu:</strong> ¼ blue cup. She will always eat, no problem.

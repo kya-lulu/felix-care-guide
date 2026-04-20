@@ -357,8 +357,12 @@ function KyaCard() {
         <SectionBlock icon={<Heart className="w-4 h-4" />} title="Food">
           <p>
             <strong>Amounts:</strong> 1 full silver metal cup of Call-of-the-Wild kibble + scoop of
-            probiotic from the orange bag, 3× daily + a smaller ½-cup night feed (she may skip — she
-            sometimes pukes if she eats too close to sleeping, so don't force it).
+            probiotic from the orange bag, 3× daily + a smaller ½-cup night feed before bed.
+          </p>
+          <p className="text-accent font-medium">
+            <strong>The night feed is not optional.</strong> Kya's stomach goes empty overnight and she
+            pukes up yellow bile the next morning if she skips it. If she seems uninterested, coax her
+            or hand-feed a few pieces to get her started.
           </p>
           <p>Feed in the kitchen, separate from Lulu.</p>
         </SectionBlock>
