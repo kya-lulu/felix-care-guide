@@ -2,18 +2,23 @@ import React, { useMemo, useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CheckCircle } from 'lucide-react'
 import { CollapsibleSection } from './CollapsibleSection'
-import { CheckboxRow } from './CheckboxRow'
+import { CheckboxRow, DeepLink } from './CheckboxRow'
 import { LearnMoreModal } from './LearnMoreModal'
-import { DaySelector, DayId, WEEK_DAYS, getDayId, dateForDayInCurrentWeek, toISODate } from './DaySelector'
+import { DaySelector, DayId, getDayId, dateForDayInCurrentWeek, toISODate } from './DaySelector'
 
-type TaskSection = 'morning' | 'midday' | 'evening'
+type TaskSection = 'morning' | 'midday' | 'evening' | 'night'
 
 interface Task {
   id: string
   label: string
   subtext?: string
+  /** Always-visible callout for safety-critical info. */
+  reminder?: string
+  /** Optional deep-link pill (e.g. tamlinfarm.org). */
+  deepLink?: DeepLink
   learnMore?: React.ReactNode
-  days?: DayId[] // undefined = every day
+  /** If omitted, task shows every day. */
+  days?: DayId[]
   section: TaskSection
 }
 
@@ -22,18 +27,20 @@ const TASKS: Task[] = [
   {
     id: 'm1',
     section: 'morning',
-    label: 'Let Lulu out (and feed both dogs)',
-    subtext: 'Wait until she pees AND poops. Feeding Lulu + Kya can happen at the same time.',
+    label: 'Let dogs out',
+    subtext: 'Both Lulu and Kya. Backyard is fine.',
+    reminder:
+      'Wait until BOTH dogs pee AND poop. Especially Lulu — if she doesn\'t go outside, she will go in the house.',
     learnMore: (
       <>
         <p>
-          <strong>Lulu</strong> goes out first thing. She needs to BOTH pee and poop before coming inside — she may need a second trip if she only pees.
+          Take both dogs out together first thing. Give them 5–10 minutes to sniff around and go. Watch for both a pee <em>and</em> a poop from each dog.
         </p>
         <p>
-          You can feed both dogs while she's outside or right after. They eat in separate rooms (Kya in the kitchen, Lulu in the dining area) so Kya doesn't snarf Lulu's food.
+          If Lulu only pees, she'll need a second trip out later — she has a small bladder and a history of going in the house if she doesn't poop on the first trip.
         </p>
         <p className="font-mono text-xs text-text-muted">
-          Food amounts: Lulu = ⅓ blue cup kibble. Kya = 1 full metal cup Call-of-the-Wild + orange-bag probiotic.
+          Kya's harness is on the hook by the door (red). Lulu doesn't need a harness for the backyard.
         </p>
       </>
     ),
@@ -41,13 +48,33 @@ const TASKS: Task[] = [
   {
     id: 'm2',
     section: 'morning',
-    label: 'Water the outdoor garden',
-    subtext: '1 full gallon per blueberry plant + full watering of every terrace bed.',
-    days: ['mon', 'wed', 'fri'],
+    label: 'Feed both dogs',
+    subtext: 'Kya: 1 full silver cup. Lulu: ⅓ blue cup.',
     learnMore: (
       <>
         <p>
-          <strong>Every-other-day schedule:</strong> Monday, Wednesday, and Friday. Skip Tue/Thu/Sat/Sun unless the soil is bone-dry or it's been a hot stretch.
+          Feed in separate rooms so Kya doesn't snarf Lulu's food. Kya eats in the kitchen; Lulu eats in the dining area.
+        </p>
+        <p>
+          <strong>Kya:</strong> 1 full silver metal cup of Call-of-the-Wild kibble + scoop of probiotic from the orange bag.
+        </p>
+        <p>
+          <strong>Lulu:</strong> ⅓ of the blue measuring cup of Purino kibble. Add ½ scoop pumpkin probiotic (white tin with orange cap) if she hasn't pooped well lately.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 'm3',
+    section: 'morning',
+    label: 'Water the outdoor garden',
+    subtext: '1 full gallon per blueberry plant + full watering of every terrace bed.',
+    days: ['mon', 'wed', 'fri'],
+    deepLink: { url: 'https://tamlinfarm.org', label: 'See the garden on tamlinfarm.org' },
+    learnMore: (
+      <>
+        <p>
+          <strong>Every-other-day schedule:</strong> Monday, Wednesday, Friday. Skip the other days unless it's been hot/dry.
         </p>
         <p>
           <strong>Order to water:</strong>
@@ -63,48 +90,42 @@ const TASKS: Task[] = [
         <p className="text-xs text-text-muted">
           Blueberries are new (3–4 week establishment). Tamlinfarm.org says every 1–2 days regardless of rain. If it's hot/dry between watering days, add a quick blueberry-only top-up.
         </p>
-        <p className="text-xs">
-          Reference:{' '}
-          <a href="https://tamlinfarm.org" target="_blank" rel="noopener noreferrer" className="text-accent underline">
-            tamlinfarm.org
-          </a>{' '}
-          is always the source of truth for bed layouts and plant list.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: 'm3',
-    section: 'morning',
-    label: 'Send Terry a photo',
-    subtext: 'From T4 — the bottom terrace near the street.',
-    learnMore: (
-      <>
-        <p>
-          Stand at the lowest terrace (T4) facing uphill toward the house and snap a photo that shows the plants. Text it to Terry.
-        </p>
-        <p>This is how Terry keeps an eye on the farm — no need to caption it, just send the shot.</p>
       </>
     ),
   },
   {
     id: 'm4',
     section: 'morning',
+    label: 'Send Terry a photo',
+    subtext: 'From T4 — the bottom terrace near the street.',
+    learnMore: (
+      <>
+        <p>Stand at the lowest terrace (T4) facing uphill toward the house. Snap a photo that shows the plants. Text it to Terry.</p>
+        <p>This is how Terry keeps an eye on the farm — no caption needed, just send the shot.</p>
+      </>
+    ),
+  },
+  {
+    id: 'm5',
+    section: 'morning',
     label: 'Feed fish tanks',
-    subtext: '10g & 7g: pinch of crushed flakes daily. 9g & 4g (bettas): every other day, 3–4 Bug Bites.',
+    subtext: '10g: pinch of flakes. 4g betta: 3–5 Bug Bites. 7g & 9g: skip.',
     learnMore: (
       <>
         <p>
-          <strong>Daily tanks (10g + 7g):</strong> small pinch of crushed flakes each.
+          <strong>10-gallon:</strong> small pinch of crushed flakes, daily.
         </p>
         <p>
-          <strong>Betta tanks (9g + 4g):</strong> 3–4 Bug Bites pellets, <em>every other day only</em>. Overfeeding them is the #1 risk.
+          <strong>4-gallon betta:</strong> 3–5 Bug Bites pellets, daily.
+        </p>
+        <p>
+          <strong>7-gallon and 9-gallon:</strong> nothing — don't feed. Terry handles these.
         </p>
         <p className="text-xs text-text-muted">
-          <strong>2-minute rule:</strong> if food isn't eaten within 2 minutes, scoop it out with the little net so it doesn't foul the water.
+          <strong>2-minute rule:</strong> if the 10g fish haven't eaten the flakes within 2 minutes, scoop out the uneaten food with the small net so it doesn't foul the water.
         </p>
         <p>
-          Visual check: any gasping at the surface, clamped fins, or white spots → text Terry immediately.
+          Any gasping at the surface, clamped fins, or white spots on any fish → text Terry immediately.
         </p>
       </>
     ),
@@ -113,6 +134,32 @@ const TASKS: Task[] = [
   // ── MIDDAY ────────────────────────────────────────────────
   {
     id: 'md1',
+    section: 'midday',
+    label: 'Lulu potty check',
+    subtext: 'Every ~3 hours. Quick trip to the front yard.',
+    reminder: '5 hours is the absolute max — she will go in the house past that.',
+    learnMore: (
+      <>
+        <p>
+          Lulu can hold it about 5 hours max, but aim for every 3. A quick trip to the front yard is enough if she just needs to pee.
+        </p>
+        <p>If she hasn't pooped since morning, give her a little extra sniff time on this trip.</p>
+      </>
+    ),
+  },
+  {
+    id: 'md2',
+    section: 'midday',
+    label: 'Feed both dogs',
+    subtext: 'Kya: 1 full silver cup. Lulu: ⅓ blue cup.',
+    learnMore: (
+      <>
+        <p>Same as morning — feed in separate rooms. Kya gets her probiotic scoop.</p>
+      </>
+    ),
+  },
+  {
+    id: 'md3',
     section: 'midday',
     label: 'Kya midday activity',
     subtext: '30 min walk (red harness) or backyard fetch.',
@@ -127,35 +174,21 @@ const TASKS: Task[] = [
       </>
     ),
   },
-  {
-    id: 'md2',
-    section: 'midday',
-    label: 'Lulu potty check',
-    subtext: 'Every 5 hours max — quick trip out.',
-    learnMore: (
-      <>
-        <p>
-          Lulu can hold it ~5 hours max. Even if she doesn't signal, take her out. A short backyard trip is enough if she just needs to pee.
-        </p>
-      </>
-    ),
-  },
 
   // ── EVENING ───────────────────────────────────────────────
   {
     id: 'e1',
     section: 'evening',
-    label: 'Feed Lulu',
-    subtext: '⅓ blue cup kibble.',
+    label: 'Feed both dogs',
+    subtext: 'Kya: 1 full silver cup. Lulu: ⅓ blue cup.',
+    learnMore: (
+      <>
+        <p>Same amounts as morning and midday. Separate rooms, Kya gets probiotic.</p>
+      </>
+    ),
   },
   {
     id: 'e2',
-    section: 'evening',
-    label: 'Feed Kya',
-    subtext: '1 full metal cup kibble + probiotic.',
-  },
-  {
-    id: 'e3',
     section: 'evening',
     label: 'Evening walk',
     subtext: 'Both dogs. Red harness for Kya.',
@@ -170,20 +203,53 @@ const TASKS: Task[] = [
       </>
     ),
   },
+
+  // ── NIGHT (before bed) ────────────────────────────────────
   {
-    id: 'e4',
-    section: 'evening',
-    label: 'Fish tank visual check',
-    subtext: 'Gasping, clamped fins, or white spots → text Terry immediately.',
+    id: 'n1',
+    section: 'night',
+    label: 'Small night feed',
+    subtext: 'Kya: ½ silver cup. Lulu: ¼ blue cup.',
+    reminder:
+      'Kya may skip this — she sometimes pukes if she eats too close to sleeping. Offer it, but don\'t force her.',
+    learnMore: (
+      <>
+        <p>
+          Much smaller portion than the other meals — this is a top-off so they're not hungry overnight.
+        </p>
+        <p>
+          <strong>Kya:</strong> ½ a silver cup of kibble. If she turns her nose up, that's fine — pick the bowl up after 5 minutes. She'll let you know.
+        </p>
+        <p>
+          <strong>Lulu:</strong> ¼ blue cup. She will always eat, no problem.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 'n2',
+    section: 'night',
+    label: 'Final potty out',
+    subtext: 'Take both dogs out right before you sleep.',
+    reminder: 'Skipping this = accident in the house by morning, especially for Lulu.',
+    learnMore: (
+      <>
+        <p>
+          Last thing before bed — a quick backyard trip. Wait for both to pee. Lulu should also poop if she hasn't yet in the evening.
+        </p>
+      </>
+    ),
   },
 ]
 
 const SECTION_META: Record<TaskSection, { title: string; hint: string }> = {
   morning: { title: 'Morning', hint: 'When you wake up — usually 8:00–8:30' },
   midday: { title: 'Midday', hint: 'Around 12–2pm' },
-  evening: { title: 'Evening', hint: 'Around 6–9pm' },
+  evening: { title: 'Evening', hint: 'Around 6–7pm' },
+  night: { title: 'Night', hint: 'Right before you go to bed' },
 }
 
+const SECTION_ORDER: TaskSection[] = ['morning', 'midday', 'evening', 'night']
 const STORAGE_KEY = 'tamlin-checklist-v2'
 
 function loadState(): Record<string, string[]> {
@@ -231,14 +297,13 @@ export function TodayTab() {
     [stateByDate, selectedDateISO],
   )
 
-  // Tasks visible on the selected day
   const visibleTasks = useMemo(
     () => TASKS.filter((t) => !t.days || t.days.includes(selectedDay)),
     [selectedDay],
   )
 
   const tasksBySection = useMemo(() => {
-    const out: Record<TaskSection, Task[]> = { morning: [], midday: [], evening: [] }
+    const out: Record<TaskSection, Task[]> = { morning: [], midday: [], evening: [], night: [] }
     for (const t of visibleTasks) out[t.section].push(t)
     return out
   }, [visibleTasks])
@@ -246,14 +311,12 @@ export function TodayTab() {
   const totalDone = visibleTasks.filter((t) => checkedSet.has(t.id)).length
   const allDone = visibleTasks.length > 0 && totalDone === visibleTasks.length
 
-  // Persist
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(stateByDate))
     } catch {}
   }, [stateByDate])
 
-  // Celebrate when fully done (only for the day currently being viewed)
   useEffect(() => {
     if (allDone && totalDone > 0 && isToday) {
       const timer = setTimeout(() => setShowSuccess(true), 400)
@@ -346,7 +409,7 @@ export function TodayTab() {
       )}
 
       <motion.div variants={containerVariants} initial="hidden" animate="show" key={selectedDateISO}>
-        {(['morning', 'midday', 'evening'] as TaskSection[]).map((section) => {
+        {SECTION_ORDER.map((section) => {
           const tasks = tasksBySection[section]
           if (tasks.length === 0) return null
           const meta = SECTION_META[section]
@@ -364,6 +427,8 @@ export function TodayTab() {
                     id={task.id}
                     label={task.label}
                     subtext={task.subtext}
+                    reminder={task.reminder}
+                    deepLink={task.deepLink}
                     checked={checkedSet.has(task.id)}
                     onChange={handleToggle}
                     onLearnMore={task.learnMore ? () => setActiveLearnMore(task) : undefined}
