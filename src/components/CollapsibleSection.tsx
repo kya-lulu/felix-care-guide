@@ -4,13 +4,14 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 interface CollapsibleSectionProps {
   title: string
+  hint?: string
   completedCount?: number
   totalCount?: number
   children: React.ReactNode
   defaultExpanded?: boolean
 }
 
-export function CollapsibleSection({ title, completedCount, totalCount, children, defaultExpanded = true }: CollapsibleSectionProps) {
+export function CollapsibleSection({ title, hint, completedCount, totalCount, children, defaultExpanded = true }: CollapsibleSectionProps) {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded)
   const showProgress = completedCount !== undefined && totalCount !== undefined
   const progressPercent = showProgress ? (completedCount / totalCount) * 100 : 0
@@ -24,6 +25,9 @@ export function CollapsibleSection({ title, completedCount, totalCount, children
       >
         <div className="flex flex-col items-start gap-1">
           <h2 className="font-serif text-xl font-semibold text-primary">{title}</h2>
+          {hint && (
+            <span className="font-sans text-xs text-text-muted italic">{hint}</span>
+          )}
           {showProgress && (
             <span className="font-mono text-xs text-text-muted uppercase tracking-wider">
               {completedCount} / {totalCount} done
