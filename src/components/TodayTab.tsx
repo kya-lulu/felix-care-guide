@@ -322,6 +322,32 @@ const TASKS: Task[] = [
       </>
     ),
   },
+  {
+    id: 'n_bins',
+    section: 'night',
+    label: 'Take garbage bins out to the curb',
+    subtext: 'Pickup is Monday morning — bins must be at the curb by then.',
+    days: ['sun'],
+    reminder: 'Sunday night only. If you miss it, the bins sit full for another week.',
+    learnMore: (
+      <>
+        <p>
+          Pickup truck comes Monday morning. Roll all three bins from the side of the house out to the curb on Sunday night before you go to bed.
+        </p>
+        <ul className="list-disc list-inside space-y-1 pl-1">
+          <li><strong>Black bin</strong> — landfill garbage</li>
+          <li><strong>Blue bin</strong> — recycling</li>
+          <li><strong>Green bin</strong> — yard waste / compost</li>
+        </ul>
+        <p className="text-xs text-text-muted">
+          Park them at the curb with the handles facing the house and at least 3 feet of space between each bin so the truck arm can grab them.
+        </p>
+        <p className="text-xs text-text-muted">
+          Bring them back in Monday after work / once you see they've been emptied.
+        </p>
+      </>
+    ),
+  },
 ]
 
 const SECTION_META: Record<TaskSection, { title: string; hint: string }> = {
