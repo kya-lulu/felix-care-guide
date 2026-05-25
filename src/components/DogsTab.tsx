@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { AlertTriangle, Heart, Activity, Brain, Droplet, ExternalLink } from 'lucide-react'
+import { AlertTriangle, Heart, Activity, Brain, Droplet, ExternalLink, Clock, Sun, Moon, Footprints, MapPin, Video, Utensils, Dog } from 'lucide-react'
 import { WarningBox } from './WarningBox'
 
 const containerVariants = {
@@ -191,6 +191,80 @@ function VetRow({ label, name, phone, isEmergency }: VetRowProps) {
 
 // ───────────────────────────────────────────────────────────
 
+interface ScheduleRowProps {
+  time: string
+  icon: React.ReactNode
+  title: string
+  note?: string
+  emphasis?: boolean
+}
+function ScheduleRow({ time, icon, title, note, emphasis }: ScheduleRowProps) {
+  return (
+    <li className="flex items-start gap-3 py-2">
+      <span className="font-mono text-[11px] text-text-muted uppercase tracking-wide w-20 shrink-0 mt-1">{time}</span>
+      <span className={`flex-shrink-0 mt-0.5 ${emphasis ? 'text-accent' : 'text-primary'}`}>{icon}</span>
+      <div className="flex-1 min-w-0">
+        <p className={`font-sans text-sm leading-snug ${emphasis ? 'text-primary font-semibold' : 'text-text'}`}>{title}</p>
+        {note ? <p className="font-sans text-xs text-text-muted leading-snug mt-0.5">{note}</p> : null}
+      </div>
+    </li>
+  )
+}
+
+function DailyScheduleCard() {
+  return (
+    <div className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden mb-6">
+      <div className="bg-primary/10 px-5 py-3 flex items-center gap-2 border-b border-border">
+        <Clock className="w-5 h-5 text-primary" />
+        <h2 className="font-serif text-xl font-semibold text-primary">Daily rhythm</h2>
+      </div>
+      <ol className="p-4 divide-y divide-border">
+        <ScheduleRow
+          time="7–8 am"
+          icon={<Sun className="w-4 h-4" />}
+          title="Wake up · let them out"
+          note="A walk is better than just letting them out — they poop better on walks."
+        />
+        <ScheduleRow
+          time="morning"
+          icon={<Footprints className="w-4 h-4" />}
+          title="Morning walk"
+        />
+        <ScheduleRow
+          time="~noon"
+          icon={<MapPin className="w-4 h-4" />}
+          title="Discovery Park · fetch with Kya"
+          note="Ball + thrower are sitting beside the Ridwell bin. Underhand rolls only — no jump catches (her knee)."
+          emphasis
+        />
+        <ScheduleRow
+          time="late PM"
+          icon={<Footprints className="w-4 h-4" />}
+          title="Afternoon walk"
+        />
+        <ScheduleRow
+          time="evening"
+          icon={<Footprints className="w-4 h-4" />}
+          title="Evening walk"
+        />
+        <ScheduleRow
+          time="night"
+          icon={<Moon className="w-4 h-4" />}
+          title="Last potty — let them out through the garden"
+          note="No need for a full walk; just a quick release."
+        />
+      </ol>
+      <div className="px-4 pb-4">
+        <p className="font-mono text-[10px] uppercase tracking-wider text-text-muted mb-2">Meals</p>
+        <p className="font-sans text-xs text-text leading-snug">
+          <Utensils className="w-3.5 h-3.5 inline-block mr-1 -mt-0.5" />
+          <strong>3 meals/day</strong> for both dogs (morning · midday · evening). See each dog's card for cup + bin details.
+        </p>
+      </div>
+    </div>
+  )
+}
+
 function LuluCard() {
   return (
     <div className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden mb-6">
@@ -227,6 +301,24 @@ function LuluCard() {
           </p>
         </SectionBlock>
 
+        <SectionBlock icon={<AlertTriangle className="w-4 h-4" />} title="Outdoors with Lulu">
+          <div className="bg-warning-bg border border-accent/30 rounded-lg p-3 mb-2">
+            <p className="font-mono text-[10px] uppercase tracking-wider text-accent font-bold mb-1.5">★ While you're watering the back garden</p>
+            <p className="font-sans text-sm">
+              Keep Lulu in the <strong>front part of the back garden</strong>. The stairs down through the terraces are tough on her back — don't let her run down them.
+            </p>
+          </div>
+          <p>
+            <strong>Front yard &gt; backyard</strong> for casual potty breaks — fewer levels, no stairs to navigate.
+          </p>
+          <div className="flex items-start gap-2 bg-primary/5 border border-primary/20 rounded-lg p-3 mt-2">
+            <Dog className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+            <p className="font-sans text-sm">
+              <strong>Other dogs → pick her up.</strong> The moment Lulu locks eyes on another dog, scoop her up (chest + hind, like the diagram) until it passes. She'll freak out otherwise.
+            </p>
+          </div>
+        </SectionBlock>
+
         <SectionBlock icon={<Droplet className="w-4 h-4" />} title="Potty & water">
           <p>
             Lulu has a history of peeing in the house if she isn't taken out. Aim for outside every{' '}
@@ -255,14 +347,20 @@ function LuluCard() {
           ]}
         />
 
-        <SectionBlock icon={<Heart className="w-4 h-4" />} title="Food">
-          <p>
-            <strong>Amounts:</strong> ⅓ of the blue measuring cup of Purino kibble, 3× daily
-            (morning, midday, evening) + a small ¼-cup night feed before bed.
+        <SectionBlock icon={<Utensils className="w-4 h-4" />} title="Food">
+          <div className="bg-primary/5 border border-primary/20 rounded-lg p-3">
+            <p className="font-sans text-sm">
+              <strong>Lulu's bin = the white box.</strong> The cup is already inside — it's pre-measured to <strong>⅓ cup</strong>. Just use it.
+            </p>
+            <p className="font-mono text-sm text-primary font-semibold mt-2">1 scoop × 3 meals/day</p>
+            <p className="font-mono text-[11px] text-text-muted mt-0.5">morning · midday · evening</p>
+          </div>
+          <p>Feed in the dining area — separate from Kya.</p>
+          <p className="text-xs text-text-muted">
+            <strong>Optional:</strong> add ½ scoop of pumpkin probiotic (white tin with orange cap) if she hasn't pooped well lately.
           </p>
-          <p>
-            Add ½ scoop of pumpkin probiotic (white tin with orange cap) if she hasn't pooped well
-            lately. Feed in the dining area — separate from Kya.
+          <p className="text-xs text-text-muted">
+            <strong>Plus:</strong> a small ¼-cup night feed before bed (legacy routine — skip if Terry says so).
           </p>
         </SectionBlock>
 
@@ -354,15 +452,30 @@ function KyaCard() {
           ]}
         />
 
-        <SectionBlock icon={<Heart className="w-4 h-4" />} title="Food">
-          <p>
-            <strong>Amounts:</strong> 1 full silver metal cup of Call-of-the-Wild kibble + scoop of
-            probiotic from the orange bag, 3× daily + a smaller ½-cup night feed before bed.
-          </p>
-          <p className="text-accent font-medium">
-            <strong>The night feed is not optional.</strong> Kya's stomach goes empty overnight and she
-            pukes up yellow bile the next morning if she skips it. If she seems uninterested, coax her
-            or hand-feed a few pieces to get her started.
+        <SectionBlock icon={<Utensils className="w-4 h-4" />} title="Food">
+          <div className="bg-primary/5 border border-primary/20 rounded-lg p-3">
+            <p className="font-sans text-sm">
+              <strong>Kya's bin has a silver cup inside.</strong> Use that cup as the measure.
+            </p>
+            <p className="font-mono text-sm text-primary font-semibold mt-2">1 silver cup × 3 meals/day</p>
+            <p className="font-mono text-[11px] text-text-muted mt-0.5">morning · midday · evening</p>
+          </div>
+
+          <div className="bg-warning-bg border border-accent/30 rounded-lg p-3 mt-2">
+            <div className="flex items-center gap-2 mb-1.5">
+              <Video className="w-4 h-4 text-accent flex-shrink-0" />
+              <p className="font-mono text-[11px] uppercase tracking-wider text-accent font-bold">★ Special — half / half split</p>
+            </div>
+            <p className="font-sans text-sm">
+              Kya's meals are a <strong>half / half split</strong> — watch the short video Terry airdropped you. The split matters; don't just give her one solid cup of either food.
+            </p>
+            <p className="font-sans text-xs text-text-muted mt-1.5">
+              If you didn't get the video, text Terry — don't guess on the split.
+            </p>
+          </div>
+
+          <p className="text-accent font-medium mt-2">
+            <strong>Night feed is not optional.</strong> Kya's stomach goes empty overnight and she pukes up yellow bile the next morning if she skips it. A smaller ½-cup before bed. If she seems uninterested, coax her or hand-feed a few pieces.
           </p>
           <p>Feed in the kitchen, separate from Lulu.</p>
         </SectionBlock>
@@ -386,6 +499,9 @@ export function DogsTab() {
       </header>
 
       <motion.div variants={containerVariants} initial="hidden" animate="show">
+        <motion.div variants={itemVariants}>
+          <DailyScheduleCard />
+        </motion.div>
         <motion.div variants={itemVariants}>
           <LuluCard />
         </motion.div>

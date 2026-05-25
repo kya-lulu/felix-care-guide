@@ -6,6 +6,7 @@ import { TodayTab } from './components/TodayTab'
 import { DogsTab } from './components/DogsTab'
 import { GardenTab } from './components/GardenTab'
 import { AquariumTab } from './components/AquariumTab'
+import { HouseTab } from './components/HouseTab'
 
 export function App() {
   const [activeTab, setActiveTab] = useState<TabId>('today')
@@ -15,6 +16,7 @@ export function App() {
       case 'dogs': return <DogsTab />
       case 'garden': return <GardenTab />
       case 'aquarium': return <AquariumTab />
+      case 'house': return <HouseTab />
       default: return <TodayTab />
     }
   }

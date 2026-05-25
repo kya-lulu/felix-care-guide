@@ -27,20 +27,23 @@ const TASKS: Task[] = [
   {
     id: 'm1',
     section: 'morning',
-    label: 'Let dogs out',
-    subtext: 'Both Lulu and Kya. Backyard is fine.',
+    label: 'Let dogs out (or walk)',
+    subtext: 'A walk is better than just letting them out — they poop better on walks.',
     reminder:
       'Wait until BOTH dogs pee AND poop. Especially Lulu — if she doesn\'t go outside, she will go in the house.',
     learnMore: (
       <>
         <p>
-          Take both dogs out together first thing. Give them 5–10 minutes to sniff around and go. Watch for both a pee <em>and</em> a poop from each dog.
+          Take both dogs out together first thing (around 7–8am). A morning walk is the cleaner option — they poop better on walks than in the yard.
         </p>
         <p>
-          If Lulu only pees, she'll need a second trip out later — she has a small bladder and a history of going in the house if she doesn't poop on the first trip.
+          If Lulu only pees on a quick let-out, she'll need a second trip later — she has a small bladder and a history of going in the house if she doesn't poop on the first trip.
         </p>
         <p className="font-mono text-xs text-text-muted">
           Kya's harness is on the hook by the door (red). Lulu doesn't need a harness for the backyard.
+        </p>
+        <p className="text-xs text-text-muted">
+          <strong>Lulu safety:</strong> if you're in the back garden, keep her in the front part — the terrace stairs are tough on her back. Front yard &gt; backyard for casual potty breaks. If she sees another dog, pick her up (chest + hind) until it passes.
         </p>
       </>
     ),
@@ -49,17 +52,18 @@ const TASKS: Task[] = [
     id: 'm2',
     section: 'morning',
     label: 'Feed both dogs',
-    subtext: 'Kya: 1 full silver cup. Lulu: ⅓ blue cup.',
+    subtext: 'Lulu: scoop from white box (⅓). Kya: silver cup — half/half split.',
+    reminder: 'Kya\'s meals are a half/half split — watch the video Terry airdropped. Don\'t just give her one full cup of either food.',
     learnMore: (
       <>
         <p>
           Feed in separate rooms so Kya doesn't snarf Lulu's food. Kya eats in the kitchen; Lulu eats in the dining area.
         </p>
         <p>
-          <strong>Kya:</strong> 1 full silver metal cup of Call-of-the-Wild kibble + scoop of probiotic from the orange bag.
+          <strong>Lulu — white box.</strong> The cup is already inside, pre-measured to ⅓ cup. One scoop. Add ½ scoop pumpkin probiotic (white tin with orange cap) if she hasn't pooped well lately.
         </p>
         <p>
-          <strong>Lulu:</strong> ⅓ of the blue measuring cup of Purino kibble. Add ½ scoop pumpkin probiotic (white tin with orange cap) if she hasn't pooped well lately.
+          <strong>Kya — silver cup in her bin.</strong> One silver cup per meal — but it's a <strong>half / half split</strong> of two foods. Watch Terry's airdropped video for the split. If you didn't get it, text Terry — don't guess.
         </p>
       </>
     ),
@@ -67,41 +71,97 @@ const TASKS: Task[] = [
   {
     id: 'm_blinds',
     section: 'morning',
-    label: 'Open guest bedroom blinds',
-    subtext: 'So the plants get sunlight all day.',
+    label: 'Open blinds throughout the house',
+    subtext: 'So the indoor plants get sunlight all day.',
     learnMore: (
       <>
-        <p>The guest bedroom has several light-loving house plants. Open the blinds first thing in the morning so they get a full day of light.</p>
-        <p>You can close them before you leave for the evening if you'd like — the morning and midday light is what matters most.</p>
+        <p>Open the blinds in every room with plants — especially the guest bedroom, which has the most light-loving ones.</p>
+        <p>You can close them before you leave for the evening if you'd like; the morning and midday light is what matters most.</p>
+      </>
+    ),
+  },
+  {
+    id: 'm_compost',
+    section: 'morning',
+    label: 'Check compost bin',
+    subtext: 'Take it out only if it\'s overflowing.',
+    learnMore: (
+      <>
+        <p>
+          Just a glance — if the indoor compost bin is overflowing, empty it into the green outdoor bin. Otherwise leave it.
+        </p>
+        <p className="text-xs text-text-muted">
+          And keep the counter wiped down + no food left out — ants will swarm if they find crumbs.
+        </p>
       </>
     ),
   },
   {
     id: 'm3',
     section: 'morning',
-    label: 'Water the outdoor garden',
-    subtext: '1 full gallon per blueberry plant + full watering of every terrace bed.',
-    days: ['mon', 'wed', 'fri'],
+    label: 'Backyard — every-visit watering',
+    subtext: 'Tulip ring (¼ can) + red currant & raspberry (1 can at roots).',
     deepLink: { url: 'https://tamlinfarm.org', label: 'See the garden on tamlinfarm.org' },
     learnMore: (
       <>
-        <p>
-          <strong>Every-other-day schedule:</strong> Monday, Wednesday, Friday. Skip the other days unless it's been hot/dry.
-        </p>
-        <p>
-          <strong>Order to water:</strong>
-        </p>
-        <ol className="list-decimal list-inside space-y-1 pl-1">
-          <li>NE fence <strong>blueberries</strong> — 1 full gallon per plant, poured slowly at the root ball.</li>
-          <li>T2 priority bed — kale, chard, arugula, bok choy, brassicas.</li>
-          <li>T1 sunny edibles — snap peas, beans, borage, strawberries.</li>
-          <li>T3 pollinators + Toro blueberry.</li>
-          <li>T4 bottom bed — bok choy, lavender, chamomile.</li>
-          <li>Shady shed corner if anything looks dry.</li>
-        </ol>
+        <p><strong>Fill the can at the hose splitter:</strong> place the can under the spout, toggle the splitter ON, wait for it to fill, toggle OFF.</p>
+        <p><strong>Then water these two every-visit items:</strong></p>
+        <ul className="list-disc list-inside space-y-1 pl-1">
+          <li><strong>Tulip-ring flower circle</strong> — about ¼ can, poured at the roots.</li>
+          <li><strong>Red currant + raspberry</strong> — 1 full can at the roots.</li>
+        </ul>
         <p className="text-xs text-text-muted">
-          Blueberries are new (3–4 week establishment). Tamlinfarm.org says every 1–2 days regardless of rain. If it's hot/dry between watering days, add a quick blueberry-only top-up.
+          Watch the soil cue: when the surface turns dark and a thin liquid layer pools briefly before soaking in, that bed is done.
         </p>
+      </>
+    ),
+  },
+  {
+    id: 'm_sunnybeds',
+    section: 'morning',
+    label: 'Sunny? Water the 3 priority beds',
+    subtext: 'T2 leafy greens · T2 brassicas/cauliflower · T1 sunny edibles.',
+    reminder: 'Only if it\'s been sunny / no recent rain. Skip otherwise — rain handles it.',
+    deepLink: { url: 'https://tamlinfarm.org', label: 'See beds on tamlinfarm.org' },
+    learnMore: (
+      <>
+        <p>On sunny days, water all three of these backyard beds deeply at the roots:</p>
+        <ul className="list-disc list-inside space-y-1 pl-1">
+          <li><strong>T2 leafy greens</strong> — kale, chard, arugula, bok choy.</li>
+          <li><strong>T2 right</strong> — brassicas, cauliflower.</li>
+          <li><strong>T1 sunny edibles</strong> — snap peas, beans, starts.</li>
+        </ul>
+        <p className="text-xs text-text-muted">If it's been raining heavily, skip these — rain is doing the work.</p>
+      </>
+    ),
+  },
+  {
+    id: 'm_blueberries',
+    section: 'morning',
+    label: 'Water blueberries',
+    subtext: '1 full can PER blueberry plant — main repeat chore.',
+    days: ['mon', 'thu', 'sun'],
+    reminder: 'Every 3 days. This one takes effort — don\'t shortcut the per-plant pour.',
+    learnMore: (
+      <>
+        <p>
+          Every 3 days (Mon / Thu / Sun on this calendar), pour <strong>one full can per blueberry plant</strong> at the root ball. NE fence row.
+        </p>
+        <p className="text-xs text-text-muted">
+          This is the main repeat chore in the backyard. Slow, deep pour at the base — not a sprinkle.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 'm_pollinators',
+    section: 'morning',
+    label: 'Water native pollinator bed',
+    subtext: '~1 can around the base.',
+    days: ['mon', 'wed', 'fri'],
+    learnMore: (
+      <>
+        <p>Every 2–3 days (Mon / Wed / Fri here), pour about <strong>one full can</strong> around the base of the native pollinators (T3).</p>
       </>
     ),
   },
@@ -109,12 +169,12 @@ const TASKS: Task[] = [
     id: 'm_houseplants',
     section: 'morning',
     label: 'Water house plants',
-    subtext: 'Office, guest bedroom, living room.',
-    reminder: 'Check soil moisture FIRST — only water if the top inch is dry.',
+    subtext: 'Less water than outside — just a bit wet, not soaked.',
+    reminder: 'Pour slowly until the topsoil darkens; stop before any drainage runs. Underwater > overwater.',
     days: ['tue', 'thu', 'sat'],
     learnMore: (
       <>
-        <p>House plants live across several rooms — they're scattered, so sweep through each:</p>
+        <p>Indoor plants need <strong>much less water than the outdoor garden</strong> — most just want the soil to be a bit wet, not soaked. Sweep through each room:</p>
         <ul className="list-disc list-inside space-y-1 pl-1">
           <li>
             <strong>Living room / dining area:</strong> plants on the window sill, plants in front of the big windows, the small <em>orchid</em> and <em>lucky bamboo</em> on the fireplace mantle, and a plant on the dining room table.
@@ -127,7 +187,7 @@ const TASKS: Task[] = [
           </li>
         </ul>
         <p>
-          Most house plants prefer to dry out slightly between waterings. Stick a finger about an inch into the soil — if it's dry, water until you see a little drainage; if it's still moist, skip that plant.
+          Stick a finger about an inch into the soil — if it's dry, pour slowly until the topsoil darkens; if it's still moist, skip that plant.
         </p>
         <p className="text-xs text-text-muted">
           <strong>Orchid + lucky bamboo special cases:</strong> the orchid wants a small pour of water into the bark and that's it — don't flood it. The lucky bamboo lives in water only; just top its vase off to the original line.
@@ -142,32 +202,36 @@ const TASKS: Task[] = [
     id: 'm_deck',
     section: 'morning',
     label: 'Water deck plants',
-    subtext: 'Potted plants out on the deck.',
-    days: ['tue', 'thu', 'sat'],
+    subtext: '1–1.25 cans per pot at the roots. Japanese maple: just 1 can.',
     learnMore: (
       <>
-        <p>The deck pots dry out faster than ground beds because of wind and direct sun.</p>
-        <p>Water slowly until you see drainage come through the bottom of each pot. Pots without drainage trays may need a slower pour instead of a flush.</p>
+        <p>
+          All deck plants are potted — same species as the tamlinfarm.org beds, just up here. Across-the-board rule: pour about <strong>1 to 1.25 black cans</strong> at the roots of each pot.
+        </p>
+        <p>
+          <strong>Visual cue:</strong> the soil surface darkens toward black and a thin liquid layer pools briefly before soaking down. That's your signal to stop.
+        </p>
+        <p>
+          <strong>Japanese maple — specialty:</strong> just <strong>one</strong> full can. The goal is to keep it cool, not soak it. Watch the trunk/branches — properly cooled, the wood looks darker brown (damp) instead of its dry warm-tan shade.
+        </p>
       </>
     ),
   },
   {
     id: 'm_frontyard',
     section: 'morning',
-    label: 'Water front yard + oval',
-    subtext: 'Oval bed (salvia, bergamot, etc.) + potted plants by the entry.',
-    reminder: 'Hit the salvia and bergamot — they wilt fastest in heat.',
-    days: ['tue', 'thu', 'sat'],
+    label: 'Front yard — 3 watering zones',
+    subtext: 'Right: 2–2.5 cans · Left: 2 cans · Delphinium / iris / lungwort: 1 can.',
     deepLink: { url: 'https://tamlinfarm.org/#front-yard', label: 'See front-yard plants on tamlinfarm.org' },
     learnMore: (
       <>
-        <p>Front yard watering covers:</p>
-        <ul className="list-disc list-inside space-y-0.5 pl-1">
-          <li>The <strong>oval garden bed</strong> — salvia, bergamot, and the rest of the perennial mix.</li>
-          <li>All the <strong>potted plants</strong> by the front entry and walkway.</li>
+        <p>Three zones, all watered at the roots with the same black can. About <strong>5 to 5.5 cans total</strong>.</p>
+        <ul className="list-disc list-inside space-y-1 pl-1">
+          <li><strong>Right side — ~2 to 2.5 cans:</strong> lavender, mulberry, peppers, rhododendron.</li>
+          <li><strong>Left side — ~2 cans:</strong> strawberries, salvia, bergamot, three small flowers, fig.</li>
+          <li><strong>Delphiniums / irises / lungwort — 1 can.</strong></li>
         </ul>
-        <p>Salvia and bergamot are the most water-sensitive — give them a thorough soak at the base, not over the leaves.</p>
-        <p className="text-xs text-text-muted">Pots dry fastest. Water each pot until drainage shows at the bottom.</p>
+        <p className="text-xs text-text-muted">Same soil cue as the deck — stop when the surface darkens and a thin liquid layer pools briefly.</p>
       </>
     ),
   },
@@ -187,27 +251,21 @@ const TASKS: Task[] = [
     id: 'm5',
     section: 'morning',
     label: 'Feed fish tanks',
-    subtext: '10g: pinch of flakes. 4g betta: 3–5 Bug Bites. 7g & 9g: skip.',
+    subtext: '10g + 9g + 7g (living room). Pinch of flakes each — like a pinch of salt.',
     days: ['mon', 'wed', 'fri', 'sun'],
     learnMore: (
       <>
         <p>
-          <strong>Fish schedule:</strong> every other day — Mon / Wed / Fri / Sun. Skip Tue, Thu, Sat entirely.
+          The <strong>three living-room tanks</strong> (10g, 9g, 7g) get a small pinch of flakes each, sprinkled across the surface. About the same amount you'd grab as a pinch of salt — not a heaped scoop.
         </p>
         <p>
-          <strong>10-gallon:</strong> small pinch of crushed flakes.
+          <strong>Cadence:</strong> every 2–3 days. The calendar puts that on Mon / Wed / Fri / Sun.
         </p>
         <p>
-          <strong>4-gallon betta:</strong> 3–5 Bug Bites pellets.
-        </p>
-        <p>
-          <strong>7-gallon and 9-gallon:</strong> nothing — don't feed. Terry handles these.
+          <strong>4g Planted Betta:</strong> not on your list — Terry handles it. Skip.
         </p>
         <p className="text-xs text-text-muted">
-          <strong>2-minute rule:</strong> if the 10g fish haven't eaten the flakes within 2 minutes, scoop out the uneaten food with the small net so it doesn't foul the water.
-        </p>
-        <p>
-          Any gasping at the surface, clamped fins, or white spots on any fish → text Terry immediately.
+          Any gasping at the surface, clamped fins, white spots, or a dead fish → text Terry immediately.
         </p>
       </>
     ),
@@ -233,25 +291,49 @@ const TASKS: Task[] = [
     id: 'md2',
     section: 'midday',
     label: 'Feed both dogs',
-    subtext: 'Kya: 1 full silver cup. Lulu: ⅓ blue cup.',
+    subtext: 'Lulu: scoop from white box. Kya: silver cup, half/half split.',
     learnMore: (
       <>
-        <p>Same as morning — feed in separate rooms. Kya gets her probiotic scoop.</p>
+        <p>Same as morning — feed in separate rooms.</p>
+        <p>Lulu uses the pre-measured cup in her white box (⅓ cup). Kya gets one silver cup as the half/half split (see the video Terry sent).</p>
       </>
     ),
   },
   {
     id: 'md3',
     section: 'midday',
-    label: 'Kya midday activity',
-    subtext: '30 min walk (red harness) or backyard fetch.',
+    label: 'Noon — Discovery Park + fetch for Kya',
+    subtext: 'Ball + thrower live beside the Ridwell bin.',
+    reminder: 'Underhand rolls only — no jump catches (Kya\'s knee).',
     learnMore: (
       <>
         <p>
-          Kya needs real exercise at midday — either a 30-minute neighborhood walk in her <strong>red harness</strong>, or vigorous backyard fetch until she's panting.
+          Around noon, take both dogs to <strong>Discovery Park</strong>. Walk around, then throw the ball for Kya.
+        </p>
+        <p>
+          <strong>The ball and the thrower are sitting beside the Ridwell bin</strong> — grab them on the way out.
+        </p>
+        <p>
+          Throw <strong>underhand</strong> so the ball rolls along the ground. No high throws / bounces — she'll leap to catch and risk her cranial-cruciate ligament (partial tear).
         </p>
         <p className="text-xs text-text-muted">
-          Avoid skate parks — she reacts to skateboarders and squirrels. Holding the leash in her mouth at the start of a walk is normal and fine.
+          Avoid skaters and skateboarders — she reacts. Holding the leash in her mouth at the start of a walk is normal and fine.
+        </p>
+        <p className="text-xs text-text-muted">
+          <strong>Lulu:</strong> on leash the whole time. If she sees another dog, pick her up until it passes.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 'md_walk',
+    section: 'midday',
+    label: 'Late afternoon walk',
+    subtext: 'Both dogs. Second outing of the day.',
+    learnMore: (
+      <>
+        <p>
+          A second walk in the late afternoon (~4–5pm) — bridges between the noon park trip and the evening walk. Doesn't need to be long; just a real walk so they get another poop in.
         </p>
       </>
     ),
@@ -262,10 +344,11 @@ const TASKS: Task[] = [
     id: 'e1',
     section: 'evening',
     label: 'Feed both dogs',
-    subtext: 'Kya: 1 full silver cup. Lulu: ⅓ blue cup.',
+    subtext: 'Lulu: scoop from white box. Kya: silver cup, half/half split.',
     learnMore: (
       <>
-        <p>Same amounts as morning and midday. Separate rooms, Kya gets probiotic.</p>
+        <p>Same as the other meals — Lulu's pre-measured cup from the white box, Kya's silver cup with the half/half split.</p>
+        <p>Separate rooms.</p>
       </>
     ),
   },
@@ -291,19 +374,36 @@ const TASKS: Task[] = [
     id: 'n1',
     section: 'night',
     label: 'Small night feed',
-    subtext: 'Kya: ½ silver cup. Lulu: ¼ blue cup.',
+    subtext: 'Kya: ½ silver cup (NOT optional). Lulu: small top-off.',
     reminder:
-      'Kya MUST eat this. Her stomach gets empty overnight and she throws up bile if she skips it. Sit with her until she finishes.',
+      'Kya MUST eat this. Her stomach gets empty overnight and she throws up yellow bile if she skips it. Sit with her until she finishes.',
     learnMore: (
       <>
         <p>
           Small top-off meal so neither dog is hungry overnight — but for Kya this is <strong>not optional</strong>.
         </p>
         <p>
-          <strong>Kya:</strong> ½ silver cup of kibble. If her stomach goes empty through the night, she pukes up yellow bile in the morning. If she seems uninterested, sit next to her bowl and coax her — hand-feed a few pieces if needed.
+          <strong>Kya:</strong> about ½ silver cup. If her stomach goes empty through the night, she pukes up yellow bile in the morning. If she seems uninterested, sit next to her bowl and coax her — hand-feed a few pieces if needed.
         </p>
         <p>
-          <strong>Lulu:</strong> ¼ blue cup. She will always eat, no problem.
+          <strong>Lulu:</strong> small top-off (~¼ cup). She'll always eat, no problem. Skip if Terry says so — the main 3 meals/day are enough.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 'n_lock',
+    section: 'night',
+    label: 'Lock front + back doors',
+    subtext: 'Both doors locked before you sleep.',
+    reminder: 'Also lock any time you leave the house during the day.',
+    learnMore: (
+      <>
+        <p>
+          Last thing before bed — make sure both the front door and the back door are locked.
+        </p>
+        <p className="text-xs text-text-muted">
+          Same rule applies any time you go out during the day. See the House tab for the full lock-up + Lulu-crate routine when leaving.
         </p>
       </>
     ),
@@ -311,13 +411,17 @@ const TASKS: Task[] = [
   {
     id: 'n2',
     section: 'night',
-    label: 'Final potty out',
-    subtext: 'Take both dogs out right before you sleep.',
+    label: 'Final potty — let them out through the garden',
+    subtext: 'No full walk needed; just a quick garden release.',
     reminder: 'Skipping this = accident in the house by morning, especially for Lulu.',
     learnMore: (
       <>
         <p>
-          Last thing before bed — a quick backyard trip. Wait for both to pee. Lulu should also poop if she hasn't yet in the evening.
+          Last thing before bed — open the back door and let them out through the garden for a quick pee. No need for a full walk; this one's just a release.
+        </p>
+        <p>Wait for both to pee. Lulu should also poop if she hasn't yet in the evening.</p>
+        <p className="text-xs text-text-muted">
+          Lulu: keep her in the front part of the garden — don't let her run the terrace stairs in the dark.
         </p>
       </>
     ),

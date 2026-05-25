@@ -1,7 +1,7 @@
 import React from 'react'
-import { Home, PawPrint, Leaf, Fish } from 'lucide-react'
+import { CheckSquare, PawPrint, Leaf, Fish, House } from 'lucide-react'
 
-export type TabId = 'today' | 'dogs' | 'garden' | 'aquarium'
+export type TabId = 'today' | 'dogs' | 'garden' | 'aquarium' | 'house'
 
 interface BottomTabBarProps {
   activeTab: TabId
@@ -10,10 +10,11 @@ interface BottomTabBarProps {
 
 export function BottomTabBar({ activeTab, onTabChange }: BottomTabBarProps) {
   const tabs = [
-    { id: 'today' as TabId, label: 'Today', icon: Home },
+    { id: 'today' as TabId, label: 'Today', icon: CheckSquare },
     { id: 'dogs' as TabId, label: 'Dogs', icon: PawPrint },
     { id: 'garden' as TabId, label: 'Garden', icon: Leaf },
     { id: 'aquarium' as TabId, label: 'Aquarium', icon: Fish },
+    { id: 'house' as TabId, label: 'House', icon: House },
   ]
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-card border-t border-border z-50">
